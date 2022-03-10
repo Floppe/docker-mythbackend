@@ -35,6 +35,10 @@ fi
 #  touch $MYTHHOME/.Xauthority && chown mythtv $MYTHHOME/.Xauthority
 #fi
 
+sed -i -e "s/^Listen .*/Listen ${MYTHWEB_PORT:-80}/" /etc/apache2/ports.conf
+sed -i -e "s/^Port .*/Port ${SSH_PORT:-22}/" /etc/ssh/sshd_config
+sed -i -e "s/#AddressFamily any/AddressFamily inet/" /etc/ssh/sshd_config
+
 cp /root/config.xml /etc/mythtv/
 chmod 600 /etc/mythtv/config.xml && chown mythtv /etc/mythtv/config.xml
 
